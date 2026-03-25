@@ -1,4 +1,4 @@
---Câu 1
+--Question 1: Which broker contributes the highest transaction value (matched_value) in 2023?
 SELECT TOP 1 
     b.Broker_ID,
     b.Full_Name,
@@ -9,7 +9,7 @@ WHERE YEAR(t.Date) = 2023
 GROUP BY b.Broker_ID, b.Full_Name
 ORDER BY total_value DESC;
 
---Câu 2
+--Question 2: Return the customerâ€™s name that  - Opened their account in 2023? - Has the fifth highest transaction value in 2023?
 WITH customer_value AS (
     SELECT 
         c.Account_Number,
@@ -26,7 +26,7 @@ SELECT *
 FROM customer_value
 WHERE rnk = 5;
 
---câu 3
+--Question 3: Return the average sell value and buy value per month of each customer in 2023? 
 SELECT 
     c.Account_Number,
     MONTH(t.Date) AS month,
@@ -40,7 +40,7 @@ WHERE YEAR(t.Date) = 2023
 GROUP BY c.Account_Number, MONTH(t.Date)
 ORDER BY c.Account_Number, month;
 
---câu 4
+--question 4: Return the customers which have the highest transaction value (matched_value) in 2023 in each Department? 
 WITH customer_value AS (
     SELECT 
         b.Department,
@@ -61,7 +61,7 @@ SELECT *
 FROM customer_value
 WHERE rnk = 1;
 
---câu 5
+--question 5: Return accumulated revenue (transaction_value) of our company per month in 2023?
 WITH monthly AS (
     SELECT 
         MONTH(Date) AS month,
